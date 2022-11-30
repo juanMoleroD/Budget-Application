@@ -3,11 +3,14 @@ import BudgetCategory from "../components/budgetCategory";
 
 const BudgetList = ({monthlyBudget}) => {
 
+    let allocatedFunds = 0;
+    monthlyBudget.forEach(category => allocatedFunds += parseInt(category["budgeted"]));
+
     const categoryNodes = monthlyBudget.map((category, index) => { 
-        return <BudgetCategory category={category} key={index} />
+        return <BudgetCategory category={category} key={index} allocatedFunds={allocatedFunds}/>
     });
 
-    console.log(categoryNodes)
+
 
     return(
         <>

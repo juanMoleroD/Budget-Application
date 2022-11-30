@@ -10,13 +10,10 @@ const AddTransaction = ({addTransaction}) => {
             "payee": event.target.payee.value,
             "category": event.target.category.value,
             "notes": event.target.category.value,
-            "moneyIn": event.target.moneyIn.value,
-            "moneyOut": event.target.moneyOut.value
+            "moneyIn": parseInt(event.target.moneyIn.value),
+            "moneyOut": parseInt(event.target.moneyOut.value)
         }
-
         addTransaction(newTransaction);
-    
-        console.log(newTransaction);
     } 
 
     return (

@@ -1,10 +1,10 @@
 import React from "react";
 
-const BudgetCategory = ({category}) => {
+const BudgetCategory = ({category, allocatedFunds}) => {
 
     return(
         <li>Name: {category["name"]} - Budgeted: £{category["budgeted"]} - Activity: £{category["activity"]} - 
-        Avaliable: £{category["budgeted"] - category["activity"]}</li>
+        Avaliable: £{parseInt(category["budgeted"]) - parseInt(category["activity"])}</li>
     )
 }
 

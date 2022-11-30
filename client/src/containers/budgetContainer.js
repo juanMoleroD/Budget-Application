@@ -1,19 +1,15 @@
 import React from "react";
 import BudgetList from "./budgetList";
 
-const BudgetContainer = () => {
+const BudgetContainer = ({income, monthlyBudget}) => {
 
-    const testBudgetCategory = {
-        "name": "Groceries",
-        "budgeted": 600,
-        "activity": 400
-    }
-
-    const monthlyBudget = [testBudgetCategory]
+    let allocatedFunds = 0;
+    monthlyBudget.forEach(category => allocatedFunds += parseInt(category["budgeted"]));
 
     return (
         <>
             <h1>I am the budget Container</h1>
+            <h2>To Be budgeted: £{income - allocatedFunds} </h2>
             <BudgetList monthlyBudget={monthlyBudget}/> 
         </>
     )
