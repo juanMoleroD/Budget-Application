@@ -3,7 +3,7 @@ import React from "react";
 const AddTransaction = ({addTransaction}) => {
 
     const ifEmptyReturnZero = value => {
-        return value == "" ? 0: parseFloat(value);
+        return value === "" ? 0: parseFloat(value);
     }
 
     const handleSubmit = event => {

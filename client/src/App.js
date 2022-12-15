@@ -41,35 +41,35 @@ function App() {
   const updateCategoryActivity = category => {
     let result = 0;
     allTransactions.forEach(transaction => {
-      if (transaction.category == category) result += parseFloat(transaction.moneyOut);
+      if (transaction.category === category) result += parseFloat(transaction.moneyOut);
     });
     return result;
-  }
-
-  const testBudgetCategory = {
-    "name": "Groceries",
-    "budgeted": 600,
-    "activity": updateCategoryActivity("Groceries")
   }
 
   const [monthlyBudget, setMonthlyBudget] = useState([]);
 
   useEffect(() => {
-    setMonthlyBudget([testBudgetCategory])
+    const testBudgetCategory = {
+      "name": "Groceries",
+      "budgeted": 600,
+      "activity": updateCategoryActivity("Groceries")
+    }
+    const budget = [testBudgetCategory];
+    setMonthlyBudget(budget)
   }, []);
 
   const updateMonthlyBudget = (newAmount, categoryName) => {
     console.log(categoryName)
-    const copyOfMonthlyBudget = [... monthlyBudget];
+    const copyOfMonthlyBudget = [...monthlyBudget];
     copyOfMonthlyBudget.forEach(category => {
-      if (category["name"] == categoryName) category.budgeted = newAmount;
+      if (category["name"] === categoryName) category.budgeted = newAmount;
     })
     setMonthlyBudget(copyOfMonthlyBudget);
   }
 
   const addBudgetCategory = newCategory => {
     newCategory["activity"] = updateCategoryActivity(newCategory["name"]);
-    const copyOfMonthlyBudget = [... monthlyBudget, newCategory];
+    const copyOfMonthlyBudget = [...monthlyBudget, newCategory];
     setMonthlyBudget(copyOfMonthlyBudget);
   }
 
