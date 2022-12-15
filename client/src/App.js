@@ -52,21 +52,39 @@ function App() {
     "activity": updateCategoryActivity("Groceries")
   }
 
+  const [monthlyBudget, setMonthlyBudget] = useState([]);
 
+  useEffect(() => {
+    setMonthlyBudget([testBudgetCategory])
+  }, []);
 
-  const monthlyBudget = [testBudgetCategory]
+  const updateMonthlyBudget = (newAmount, categoryName) => {
+    console.log(categoryName)
+    const copyOfMonthlyBudget = [... monthlyBudget];
+    copyOfMonthlyBudget.forEach(category => {
+      if (category["name"] == categoryName) category.budgeted = newAmount;
+    })
+    setMonthlyBudget(copyOfMonthlyBudget);
+  }
 
+  const addBudgetCategory = newCategory => {
+    newCategory["activity"] = updateCategoryActivity(newCategory["name"]);
+    const copyOfMonthlyBudget = [... monthlyBudget, newCategory];
+    setMonthlyBudget(copyOfMonthlyBudget);
+  }
 
-
-
-    return (
-      <div className="App">
-          <h1>Budget App</h1>
-          <BudgetContainer income={income} monthlyBudget={monthlyBudget} />
-          <h1>Transactions</h1>
-          <TransactionContainer allTransactions={allTransactions} addTransaction={addTransaction}/> 
-      </div>
-    );
+  return (
+    <div className="App">
+        <h1>Budget App</h1>
+        <BudgetContainer 
+            income={income} 
+            monthlyBudget={monthlyBudget} 
+            updateMonthlyBudget={updateMonthlyBudget}
+            addBudgetCategory={addBudgetCategory} />
+        <h1>Transactions</h1>
+        <TransactionContainer allTransactions={allTransactions} addTransaction={addTransaction}/> 
+    </div>
+  );
 }
 
 export default App;

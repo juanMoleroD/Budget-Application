@@ -1,13 +1,13 @@
 import React from "react";
 import BudgetCategory from "../components/budgetCategory";
 
-const BudgetList = ({monthlyBudget}) => {
+const BudgetList = ({monthlyBudget, updateMonthlyBudget}) => {
 
     let allocatedFunds = 0;
     monthlyBudget.forEach(category => allocatedFunds += parseInt(category["budgeted"]));
 
     const categoryNodes = monthlyBudget.map((category, index) => { 
-        return <BudgetCategory category={category} key={index} allocatedFunds={allocatedFunds}/>
+        return <BudgetCategory category={category} key={index} allocatedFunds={allocatedFunds} updateMonthlyBudget={updateMonthlyBudget}/>
     });
 
 
