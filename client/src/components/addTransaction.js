@@ -2,6 +2,9 @@ import React from "react";
 
 const AddTransaction = ({addTransaction}) => {
 
+    const ifEmptyReturnZero = value => {
+        return value == "" ? 0: parseFloat(value);
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -10,8 +13,8 @@ const AddTransaction = ({addTransaction}) => {
             "payee": event.target.payee.value,
             "category": event.target.category.value,
             "notes": event.target.category.value,
-            "moneyIn": parseInt(event.target.moneyIn.value),
-            "moneyOut": parseInt(event.target.moneyOut.value)
+            "moneyIn": ifEmptyReturnZero(event.target.moneyIn.value),
+            "moneyOut": ifEmptyReturnZero(event.target.moneyOut.value)
         }
         addTransaction(newTransaction);
     } 
@@ -31,7 +34,7 @@ const AddTransaction = ({addTransaction}) => {
                 <label>Money In</label>
                 <input name="moneyIn" type="float"/>
                 <label>Money Out</label>
-                <input name="moneyOut" type="float"/>
+                <input name="moneyOut" type="float" />
                 <input type="submit" value="Add Transaction"/>
             </form>
         </>
